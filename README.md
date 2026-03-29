@@ -8,5 +8,5 @@ The system integrates sensors, PLC control logic, and an HMI to monitor:
 
 * DI water tank levels
 * Water resistivity
-* Facility air pressure
+* Facility air pressure, temperature, humidity
 * System alarms and safety conditions
