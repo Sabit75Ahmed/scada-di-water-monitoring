@@ -206,3 +206,23 @@ The Ignition HMI was used to provide operators with real-time visibility of:
 - Temperature and Humidity monitoring for a different room using IO link master module 
 - Alarm conditions
 
+
+## Skills Demonstrated
+PLC Programming (Siemens S7-1500, TIA Portal)
+Industrial Automation & Control Systems
+SCADA / HMI Development (Ignition)
+Analog & Digital Signal Processing
+Sensor Integration (Float, Pressure, Resistivity, IO-Link)
+Industrial Communication (PROFINET, IO-Link)
+Alarm Handling & Safety Interlocks
+System Troubleshooting & Commissioning
+
+## Tools & Technologies
+Siemens S7-1500 PLC (CPU 1510SP-1 PN)
+ET200SP Distributed I/O
+ET200eco PN IO-Link Master
+Ignition SCADA
+PROFINET Industrial Network
+IO-Link Communication
+Industrial Sensors & Transmitters
+
