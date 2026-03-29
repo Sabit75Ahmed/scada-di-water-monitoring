@@ -21,6 +21,7 @@ There was no integrated automation system to:
 * Monitor water quality (resistivity)
 * Detect abnormal tank levels or leaks
 * Monitor facility air pressure
+* Monitor temperature and humidity for regulated environment room
 * Provide centralized visualization for operators
 
 ## My Contribution
