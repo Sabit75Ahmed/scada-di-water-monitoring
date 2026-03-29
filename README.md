@@ -128,3 +128,71 @@ This control strategy ensures reliable tank operation, improved water quality, a
 
 ![PLC Cabinet](images/plc_cabinet.jpg)
 
+## Engineering Details
+
+### PLC Platform
+The control system was implemented using a **Siemens S7-1500 PLC (CPU 1510SP-1 PN)** with distributed I/O for integrating float sensors, analog transmitters, leak sensors, relays, and solenoid valves.
+
+### Field Devices Integrated
+- **Float sensors** for High-High, High, Low, and Low-Low tank level detection
+- **Beckman resistivity sensor** with 0–10 V analog output
+- **Pressure transmitter** for facility air pressure monitoring
+- **Leak sensors** for abnormal water detection
+- **Solenoid valves** for purge and fill control
+- **Manual purge push-button**
+- **Ignition SCADA HMI** for visualization and alarms
+
+### Process Logic
+The DI water tank uses level-based control with a purge-before-fill sequence:
+
+- When the tank level drops to **Low**, the PLC starts a timed purge cycle
+- After purge completes, the PLC opens the fill valve
+- Filling continues until the **High** level is reached
+- **High-High** and **Low-Low** conditions act as fault/interlock states
+- Leak detection also triggers alarm handling and stops normal operation when required
+
+### Analog Signal Scaling
+Analog signals were scaled inside the PLC to convert raw voltage values into engineering units.
+
+#### Air Pressure Scaling
+The facility pressure transmitter provides a **0–10 V** signal. The PLC scales this signal into **PSI** for monitoring and alarm generation.
+
+General linear scaling form:
+
+Pressure = ((RawVoltage - MinVoltage) / (MaxVoltage - MinVoltage)) * (MaxPressure - MinPressure) + MinPressure
+
+For a 0–10 V transmitter:
+Pressure = (RawVoltage / 10.0) * FullScalePressure
+
+This scaled value is then compared against alarm thresholds for low and high pressure conditions.
+
+#### Resistivity Scaling
+The resistivity sensor also provides a **0–10 V** analog output. Because direct sensor documentation was limited, an experimental calibration approach was used.
+
+A linear equation was developed from measured voltage and resistivity data:
+
+Resistivity = m × Voltage + b
+
+Where:
+- **m** = slope from calibration data
+- **b** = offset from calibration data
+
+This allowed the PLC to convert raw analog input values into usable resistivity readings for monitoring and trending.
+
+### Safety and Interlocks
+The control strategy included multiple fail-safe protections:
+
+- **High-High alarm** to prevent overflow
+- **Low-Low alarm** to prevent unsafe operation during low water or leak conditions
+- **Leak sensor alarm integration**
+- **Manual reset requirement** after alarm conditions
+
+### SCADA / HMI Functions
+The Ignition HMI was used to provide operators with real-time visibility of:
+
+- Tank level states
+- Purge and fill valve status
+- Air pressure readings
+- Resistivity trends
+- Alarm conditions
+
