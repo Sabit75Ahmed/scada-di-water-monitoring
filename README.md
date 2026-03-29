@@ -36,7 +36,7 @@ During my internship, I designed and implemented a complete PLC-SCADA based auto
   * Beckman resistivity sensor (0–10 V analog output)
   * Pressure transmitter for facility air pressure monitoring
   * Leak detection sensors for safety
-* Configured relays and solenoid valves for purge and fill operations
+  * Configured relays and solenoid valves for purge and fill operations
 
 ### Control Logic Development
 
@@ -46,7 +46,7 @@ During my internship, I designed and implemented a complete PLC-SCADA based auto
 
   * High-High overflow protection
   * Low-Low dry-run / leak protection
-* Integrated manual override (purge push-button)
+  * Integrated manual override (purge push-button)
 
 ### Signal Processing & Calibration
 
@@ -54,7 +54,38 @@ During my internship, I designed and implemented a complete PLC-SCADA based auto
 
   * Water resistivity (custom calibration due to lack of sensor documentation)
   * Air pressure (converted voltage to PSI)
-* Developed linear calibration model using experimental data
+  * Developed linear calibration model using experimental data
+
+ ## Control Logic
+
+The DI water tank operation is controlled using level-based logic with four float sensors: High-High, High, Low, and Low-Low.
+
+### Automatic Filling Sequence
+
+1. When the water level drops below the **Low** level, the PLC detects the condition.
+2. The system first activates the **purge valve** for a fixed duration to remove low-quality water and improve resistivity.
+3. After the purge cycle, the purge valve is closed.
+4. The **fill valve** is then activated to refill the tank.
+5. Filling continues until the **High** level is reached.
+6. At High level, the PLC stops the filling process.
+
+### Safety & Interlocks
+
+* **High-High Level Protection**
+  If the High sensor fails, the High-High level triggers an alarm and immediately stops the system to prevent overflow.
+
+* **Low-Low Level Protection**
+  If the tank continues to drain or a leak occurs, the Low-Low level triggers an alarm and halts operation.
+
+* **Leak Detection**
+  Additional leak sensors are integrated to detect abnormal water presence and trigger alarms.
+
+### Manual Control
+
+* A **manual purge push-button** allows operators to trigger additional purge cycles when needed.
+
+This control strategy ensures reliable tank operation, improved water quality, and safe system behavior under fault conditions.
+
 
 ### SCADA & HMI Development
 
