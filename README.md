@@ -194,5 +194,6 @@ The Ignition HMI was used to provide operators with real-time visibility of:
 - Purge and fill valve status
 - Air pressure readings
 - Resistivity trends
+- Temperature and Humidity monitoring for a different room using IO link master module 
 - Alarm conditions
 
