@@ -49,13 +49,20 @@ During my internship, I designed and implemented a complete PLC-SCADA based auto
   * Low-Low dry-run / leak protection
   * Integrated manual override (purge push-button)
 
-### Signal Processing & Calibration
+### Signa### Signal Processing & Calibration
 
-* Implemented analog signal scaling in PLC for:
+- Implemented analog signal scaling in the PLC for:
+  - Water resistivity using a custom calibration model because direct sensor documentation was limited
+  - Air pressure by converting a 0–10 V signal into PSI for monitoring and alarm generation
+- Developed a linear calibration model for resistivity using experimental voltage and measured resistivity data
 
-  * Water resistivity (custom calibration due to lack of sensor documentation)
-  * Air pressure (converted voltage to PSI)
-  * Developed linear calibration model using experimental data
+- Implemented digital process-data scaling for environmental monitoring in a separate room using a **Stego CSS-014 IO-Link temperature/humidity sensor**
+- Integrated the sensor through a **Siemens ET200eco PN IO-Link master** communicating with the PLC over **PROFINET**
+- Used the sensor’s **IODD/XML file** to identify raw data format, scaling gradient, and engineering units
+- Processed mapped input words in PLC logic and converted raw sensor values into:
+  - Temperature
+  - Relative humidity
+- Validated signal changes during commissioning using PLC watch tables and live sensor interaction
 
  ## Control Logic
 
@@ -97,6 +104,7 @@ This control strategy ensures reliable tank operation, improved water quality, a
   * Valve status (purge/fill)
   * Air pressure with alarms
   * Resistivity trends
+  * Temp and Humidity 
 
 ### System Extensions
 
