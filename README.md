@@ -106,3 +106,24 @@ This control strategy ensures reliable tank operation, improved water quality, a
   * Implemented filter exhaustion detection by extracting LED signal and integrating it into PLC logic
 * Developed alarm indication using external signal tower
 * Configured alarm notification pipeline in SCADA for leak detection events
+
+## System Visualization
+
+### DI Water System Overview
+
+![DI System](images/di_plant_overview.png)
+
+### HMI & Operation
+
+#### Purge Valve Active
+
+![Purge Valve](images/purge_valve_on.png)
+
+#### Fill Valve Active
+
+![Fill Valve](images/fill_valve_on.png)
+
+### PLC Control Panel
+
+![PLC Cabinet](images/plc_cabinet.png)
+
