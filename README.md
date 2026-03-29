@@ -114,6 +114,7 @@ This control strategy ensures reliable tank operation, improved water quality, a
 ![DI System](images/di_plant_overview.png)
 
 ### HMI & Operation
+![main HMI](images/main_hmi.png)
 
 #### Purge Valve Active
 
@@ -125,5 +126,5 @@ This control strategy ensures reliable tank operation, improved water quality, a
 
 ### PLC Control Panel
 
-![PLC Cabinet](images/plc_cabinet.png)
+![PLC Cabinet](images/plc_cabinet.jpg)
 
